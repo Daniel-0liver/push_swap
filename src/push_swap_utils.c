@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/11 03:54:37 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/11 23:12:48 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 {
 	int	i;
 
+    stack->flag = 0;
+	stack->count_moves = 0;
 	stack->size_of_elements = (argc -1);
     stack->size_stack_a = stack->size_of_elements;
     stack->size_stack_b = 0;
@@ -63,4 +65,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (result * sing);
 }
-

@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:46:01 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/11 06:20:24 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/11 23:12:21 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ typedef struct d_stacks
 	int		*stack2;
     int     size_stack_a;
     int     size_stack_b;
-    int		bigger;
+    int		nbr_random;
     int		size_of_elements;
     int     tmp;
+    int     flag;
+	int		count_moves;
 }              t_stacks;
 
 // libft functions
