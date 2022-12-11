@@ -6,51 +6,45 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/10 22:11:52 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/11 06:30:30 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <string.h>
+#include "../includes/push_swap.h"
 
-int	ft_strlen_int(int *arr)
+void    print_stacks(t_stacks *stack)
 {
-	int count;
+	int	i;
 
-	count = 0;
-	while (arr[count])
-		count++;
-	return (count);
+	i = 0;
+    while (i < stack->size_stack_a)
+    {
+		printf("stack A position %d = %d\n", i, stack->stack1[i]);
+		i++;
+    }
+	puts("");
+    i = 0;
+    while (i < stack->size_stack_b && stack->size_stack_b != 0)
+    {
+        printf("stack B position %d = %d\n", i, stack->stack2[i]);
+	    i++; 
+    }
+	puts("");
 }
 
 int main(int argc, char **argv)
 {
-	int arr[argc];
-	int count;
-	int tmp;
-
-	count = 0;
-	while (count < (argc - 1))
-	{
-		arr[count] = atoi(argv[count + 1]);
-		printf("posi %d = arr[%d]\n", count, arr[count]);
-		count++;
-	}
-	puts("");
-	count = 0;
-	tmp = arr[0];
-	while (count < (argc - 1))
-	{
-		arr[count] = arr[count + 1];
-		count++;
-	}
-	arr[count - 1] = tmp;
-	count = 0;
-	while (count < (argc - 1))
-	{
-		printf("posi %d = arr[%d]\n", count, arr[count]);
-		count++;
-	}
-	
+    t_stacks    stack;
+	init_stacks(&stack, argc, argv);
+	// print_stacks(&stack);
+    push_b(&stack);
+    push_b(&stack);
+    push_b(&stack);
+    push_b(&stack);
+    // print_stacks(&stack);
+    reverse_rotate_b(&stack);
+    // print_stacks(&stack);
+    reverse_rotate_a_and_b(&stack);
+    // print_stacks(&stack);
 	return (0);
 }
