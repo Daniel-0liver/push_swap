@@ -11,7 +11,8 @@ SRC			=	src/push_swap.c \
 				src/push_swap_utils.c \
 				src/rules.c \
 				src/rules_2.c \
-				src/rules_3.c
+				src/rules_3.c \
+				src/sort_logic.c 
 
 CC			=	gcc
 CGLAGS		=	-Wall -Wextra -Werror -I${HEADER} -fsanitize=address

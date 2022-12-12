@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 05:28:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/11 23:08:50 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/11 23:44:42 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	rotate_a(t_stacks *stack)
 	int	i;
 
 	i = 0;
-	stack->tmp = stack->stack1[0];
+	stack->tmp = stack->stack_a[0];
 	while (i < stack->size_stack_a)
-		stack->stack1[i++] = stack->stack1[i + 1];
-    stack->stack1[stack->size_stack_a - 1] = stack->tmp;
+		stack->stack_a[i++] = stack->stack_a[i + 1];
+    stack->stack_a[stack->size_stack_a - 1] = stack->tmp;
     if (stack->flag == 0)
     	write(1, "ra\n", 3);
 }
@@ -32,10 +32,10 @@ void	rotate_b(t_stacks *stack)
 	i = 0;
     if (stack->size_stack_b > 0)
 	{
-		stack->tmp = stack->stack2[0];
+		stack->tmp = stack->stack_b[0];
 		while (i < stack->size_stack_b)
-			stack->stack2[i++] = stack->stack2[i + 1];
-		stack->stack2[stack->size_stack_b - 1] = stack->tmp;
+			stack->stack_b[i++] = stack->stack_b[i + 1];
+		stack->stack_b[stack->size_stack_b - 1] = stack->tmp;
         if (stack->flag == 0)
 	    	write(1, "rb\n", 3);
 	}

@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/11 23:12:48 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/12 01:16:51 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 	stack->size_of_elements = (argc -1);
     stack->size_stack_a = stack->size_of_elements;
     stack->size_stack_b = 0;
-	stack->stack1 = (int*) malloc(stack->size_of_elements * sizeof(int));
+	stack->stack_a = (int*) malloc(stack->size_of_elements * sizeof(int));
 	i = 0;
 	while (i < stack->size_of_elements)
-		stack->stack1[i++] = ft_atoi(argv[i + 1]);
-	if (stack->size_of_elements > 3)
-		stack->stack2 = (int*) malloc(stack->size_of_elements * sizeof(int));
+		stack->stack_a[i++] = ft_atoi(argv[i + 1]);
+	if (stack->size_of_elements > 1)
+		stack->stack_b = (int*) malloc(stack->size_of_elements * sizeof(int));
 }
 
 void	free_stack(t_stacks *stack)
 {
-	free(stack->stack1);
-	stack->stack1 = NULL;
-	if (stack->stack2)
+	free(stack->stack_a);
+	stack->stack_a = NULL;
+	if (stack->stack_b)
 	{
-		free(stack->stack2);
-		stack->stack2 = NULL;
+		free(stack->stack_b);
+		stack->stack_b = NULL;
 	}
 }
 

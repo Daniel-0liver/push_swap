@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:46:01 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/11 23:12:21 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/11 23:53:59 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 typedef struct d_stacks
 {
-	int		*stack1;
-	int		*stack2;
+	int		*stack_a;
+	int		*stack_b;
     int     size_stack_a;
     int     size_stack_b;
     int		nbr_random;
@@ -46,6 +46,7 @@ void	rotate_a_and_b(t_stacks *stack);
 void	reverse_rotate_a(t_stacks *stack);
 void	reverse_rotate_b(t_stacks *stack);
 void    reverse_rotate_a_and_b(t_stacks *stack);
+void	sort_logic(t_stacks *stack);
 void	free_stack(t_stacks *stack);
 
 #endif
