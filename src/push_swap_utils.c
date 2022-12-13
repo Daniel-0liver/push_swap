@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/12 01:16:51 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/13 01:30:26 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,29 @@ void	free_stack(t_stacks *stack)
 		free(stack->stack_b);
 		stack->stack_b = NULL;
 	}
+}
+
+int	is_duplicated(t_stacks *stack)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (stack->stack_a[i])
+	{
+		j = i + 1;
+		while (stack->stack_a[j])
+		{
+			if (stack->stack_a[i] == stack->stack_a[j])
+			{
+				write(2,"Error\n", 6);
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 int	ft_atoi(const char *nptr)

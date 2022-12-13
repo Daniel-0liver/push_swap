@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/12 01:26:10 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/13 01:32:58 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,20 @@ int main(int argc, char **argv)
 {
     t_stacks    stack;
 
-	if (argc == 1)
-	if (argc == 2)
+	if (argc <= 2)
 		return (0);
 	init_stacks(&stack, argc, argv);
-	if (stack.size_of_elements = 3)
+	if (stack.size_of_elements == 2)
 	{
 		if (stack.stack_a[0] > stack.stack_a[1])
 			swap_a(&stack);
 		free_stack(&stack);
 		return (0);
 	}
-	push_swap(&stack);
+	if (is_duplicated(&stack) == 1)
+		return (0);
+	puts("Here");
+	// push_swap(&stack);
 	free_stack(&stack);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:46:01 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/11 23:53:59 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/13 01:23:32 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		ft_atoi(const char *nptr);
 
 // push_swap functions
 void	init_stacks(t_stacks *stack, int argc, char **argv);
+int		is_duplicated(t_stacks *stack);
 void	swap_a(t_stacks *stack);
 void	swap_b(t_stacks *stack);
 void	swap_a_and_b(t_stacks *stack);
