@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:22 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/14 01:31:36 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/14 23:09:27 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 int	ft_isalpha(int c)
 {
-	if (((c >= 'A' && c <= 'Z') || (c
+	if (!((c >= 'A' && c <= 'Z') || (c
 				>= 'a' && c <= 'z')))
 	{
-		return (0);
+		return (1);
 	}
 	else
-		return (1);
+		return (0);
 }
 
 void	is_non_number(char **argv, t_stacks *stack)
 {
 	int	i;
 	int j;
+	int	k;
 
 	i = 1;
 	while (argv[i])
@@ -34,8 +35,9 @@ void	is_non_number(char **argv, t_stacks *stack)
 		j = 0;
 		while (argv[i][j])
 		{
-			if (ft_isalpha(argv[i][j]) == 0)
-				stack->flag = 2;
+			k = ft_isalpha(argv[i][j]);
+			if (k == 0)
+				stack->flag = 1;
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:46:01 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/14 01:20:54 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/14 23:17:21 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct d_stacks
 }              t_stacks;
 
 // libft functions
-int		ft_atoi(const char *nptr);
+int		ft_atoi(const char *nptr, t_stacks *stack);
 int		ft_isalpha(int c);
 
 

@@ -6,36 +6,32 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/14 01:29:30 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/14 23:20:31 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *nptr, t_stacks *stack)
 {
-	int	i;
-	int	result;
-	int	sing;
+	int		i;
+	long	result;
+	int		sig;
 
 	i = 0;
-	sing = 1;
+	sig = 1;
 	result = 0;
 	while (nptr[i] && (nptr[i] == '\f' || nptr[i] == ' ' || nptr[i] == '\n'
 			|| nptr[i] == '\r' || nptr[i] == '\t' || nptr[i] == '\v'))
 		i++;
 	if (nptr[i] && (nptr[i] == '-' || nptr[i] == '+'))
-	{
-		if (nptr[i] == '-')
-			sing *= -1;
-		i++;
-	}
+		if (nptr[i++] == '-')
+			sig *= -1;
 	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
-	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (result * sing);
+		result = result * 10 + (nptr[i++] - '0');
+	if ((result * sig) == 2147483648 || (result * sig) == -2147483649)
+		stack->flag = 1;
+	return (result * sig);
 }
 
 void    init_stacks(t_stacks *stack, int argc, char **argv)
@@ -51,7 +47,7 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 	is_non_number(argv, stack);
 	i = 0;
 	while (i < stack->size_of_elements)
-		stack->stack_a[i++] = ft_atoi(argv[i + 1]);
+		stack->stack_a[i++] = ft_atoi(argv[i + 1], stack);
 	if (stack->size_of_elements > 1)
 		stack->stack_b = (int*) malloc(stack->size_of_elements * sizeof(int));
 }
@@ -67,7 +63,7 @@ int	handiling_erros(t_stacks *stack)
 	}
 	if (is_duplicated(stack) == 1)
 		return (1);
-	if (stack->flag == 2)
+	if (stack->flag == 1)
 	{
 		write(2,"Error\n", 6);
 		return (1);

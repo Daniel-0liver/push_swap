@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/14 01:01:49 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/14 23:44:32 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,32 @@ int	is_sorted(t_stacks *stack)
 	i = 0;
 	if (stack->size_stack_b == 0)
 	{
-		while (i < stack->size_of_elements)
+		while (i < (stack->size_of_elements - 1))
 		{
-			if (stack->stack_a[i] < stack->stack_a[i + 1])
-			{
-				
-			}
-			
+			if (stack->stack_a[i] > stack->stack_a[i + 1])
+				return (1);
+			i++;
 		}
-		
 	}
-	return (1);
+	return (0);
 }
 
 void    push_swap(t_stacks *stack)
 {
-	while (is_sorted(stack) == 1)
+	int i;
+
+	i = is_sorted(stack);
+	printf("%d", i);
+	if (i == 1)
 	{
-		sort_logic(stack);
+		while (i == 1)
+		{	
+			rotate_a(stack);
+			print_stacks(stack);
+			i = is_sorted(stack);
+			// sort_logic(stack);
+		}
 	}
-	
 }
 
 int main(int argc, char **argv)
@@ -71,7 +77,7 @@ int main(int argc, char **argv)
 	if (handiling_erros(&stack) == 1)
 		return (0);
 	print_stacks(&stack);
-	// push_swap(&stack);
+	push_swap(&stack);
 	free_stack(&stack);
 	return (0);
 }
