@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:43:53 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/11 23:44:42 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/15 01:27:51 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void    swap_a(t_stacks *stack)
     if (stack->flag == 0)
 	{
 	    write(1, "sa\n", 3);
-		stack->count_moves++;
 	}
+	stack->count_moves++;
 }
 
 void    swap_b(t_stacks *stack)
@@ -34,8 +34,8 @@ void    swap_b(t_stacks *stack)
     if (stack->flag == 0)
 	{
 	    write(1, "sb\n", 3);
-		stack->count_moves++;
 	}
+	stack->count_moves++;
 }
 
 void    swap_a_and_b(t_stacks *stack)

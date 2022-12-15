@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 05:28:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/11 23:44:42 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/15 23:42:24 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	rotate_a(t_stacks *stack)
     stack->stack_a[stack->size_stack_a - 1] = stack->tmp;
     if (stack->flag == 0)
     	write(1, "ra\n", 3);
+	stack->count_moves++;
 }
 
 void	rotate_b(t_stacks *stack)
@@ -38,6 +39,7 @@ void	rotate_b(t_stacks *stack)
 		stack->stack_b[stack->size_stack_b - 1] = stack->tmp;
         if (stack->flag == 0)
 	    	write(1, "rb\n", 3);
+		stack->count_moves++;
 	}
 }
 
@@ -48,4 +50,16 @@ void	rotate_a_and_b(t_stacks *stack)
 	rotate_b(stack);
 	write(1, "rr\n", 3);
     stack->flag = 0;
+}
+
+void	sa_rra(t_stacks *stack)
+{
+	swap_a(stack);
+	reverse_rotate_a(stack);
+}
+
+void	sa_ra(t_stacks *stack)
+{
+	swap_a(stack);
+	rotate_a(stack);
 }

@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/14 23:44:32 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/15 23:08:18 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void    print_stacks(t_stacks *stack)
 	puts("");
 }
 
-int	is_sorted(t_stacks *stack)
+void	is_sorted(t_stacks *stack)
 {
 	int	i;
 
@@ -41,28 +41,31 @@ int	is_sorted(t_stacks *stack)
 	{
 		while (i < (stack->size_of_elements - 1))
 		{
-			if (stack->stack_a[i] > stack->stack_a[i + 1])
-				return (1);
+			if (stack->stack_a[i] < stack->stack_a[i + 1])
+				stack->is_sorted = 0;
+			else
+			{
+				stack->is_sorted = 1;
+				return ;
+			}
 			i++;
 		}
 	}
-	return (0);
 }
 
 void    push_swap(t_stacks *stack)
 {
 	int i;
 
-	i = is_sorted(stack);
-	printf("%d", i);
-	if (i == 1)
+	is_sorted(stack);
+	printf("is sorted : %d\n", stack->is_sorted);
+	if (stack->is_sorted == 1)
 	{
-		while (i == 1)
+		while (stack->is_sorted == 1)
 		{	
-			rotate_a(stack);
+			sort_logic(stack);
 			print_stacks(stack);
-			i = is_sorted(stack);
-			// sort_logic(stack);
+			is_sorted(stack);
 		}
 	}
 }
@@ -78,6 +81,7 @@ int main(int argc, char **argv)
 		return (0);
 	print_stacks(&stack);
 	push_swap(&stack);
+	printf("Count moves: %d", stack.count_moves);
 	free_stack(&stack);
 	return (0);
 }
