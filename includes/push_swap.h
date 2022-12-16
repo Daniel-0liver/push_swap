@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:46:01 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/15 23:42:50 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/16 00:08:12 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ void	reverse_rotate_b(t_stacks *stack);
 void    reverse_rotate_a_and_b(t_stacks *stack);
 void	sa_rra(t_stacks *stack);
 void	sa_ra(t_stacks *stack);
+void	sb_rrb(t_stacks *stack);
+void	sb_rb(t_stacks *stack);
 void	is_sorted(t_stacks *stack);
 void	sort_logic(t_stacks *stack);
-void	sort_three_numbers(t_stacks *stack);
+void	sort_three_numbers_a(t_stacks *stack);
+void	sort_three_numbers_b(t_stacks *stack);
 void	free_stack(t_stacks *stack);
 
 #endif

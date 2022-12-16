@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/14 23:20:31 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/16 01:22:05 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 	is_non_number(argv, stack);
 	i = 0;
 	while (i < stack->size_of_elements)
-		stack->stack_a[i++] = ft_atoi(argv[i + 1], stack);
+	{
+		stack->stack_a[i] = ft_atoi(argv[i + 1], stack);
+		i++;
+	}
 	if (stack->size_of_elements > 1)
 		stack->stack_b = (int*) malloc(stack->size_of_elements * sizeof(int));
 }

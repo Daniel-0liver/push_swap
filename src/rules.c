@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:43:53 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/15 01:27:51 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/16 00:26:48 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void    push_a(t_stacks *stack)
 	if (stack->size_stack_b > 0)
 	{
 		while (i > 0)
-			stack->stack_a[i--] = stack->stack_a[i - 1];
+		{
+			stack->stack_a[i] = stack->stack_a[i - 1];
+			i--;
+		}
 		stack->stack_a[0] = stack->stack_b[0];
 		stack->size_stack_a++;
 		stack->size_stack_b--;
@@ -64,7 +67,10 @@ void    push_a(t_stacks *stack)
 		{
 			i = 0;
 			while (i < stack->size_stack_b)
-				stack->stack_b[i++] = stack->stack_b[i + 1];
+			{
+				stack->stack_b[i] = stack->stack_b[i + 1];
+				i++;
+			}
 			stack->stack_b[stack->size_stack_b] = 0;
 		}
         write(1, "pa\n", 3);
@@ -80,7 +86,10 @@ void	push_b(t_stacks *stack)
 	if (stack->size_stack_a > 0)
 	{
 		while (i > 0)
-			stack->stack_b[i--] = stack->stack_b[i - 1];
+		{
+			stack->stack_b[i] = stack->stack_b[i - 1];
+			i--;
+		}
 		stack->stack_b[0] = stack->stack_a[0];
 		stack->size_stack_a--;
 		stack->size_stack_b++;
@@ -88,7 +97,10 @@ void	push_b(t_stacks *stack)
 		{
 			i = 0;
 			while (i < stack->size_stack_a)
-				stack->stack_a[i++] = stack->stack_a[i + 1];
+			{
+				stack->stack_a[i] = stack->stack_a[i + 1];
+				i++;
+			}
 			stack->stack_a[stack->size_stack_a] = 0;
 		}
         write(1, "pb\n", 3);

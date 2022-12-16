@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 05:28:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/15 23:42:24 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/16 01:32:32 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@ void	rotate_a(t_stacks *stack)
 
 	i = 0;
 	stack->tmp = stack->stack_a[0];
-	while (i < stack->size_stack_a)
-		stack->stack_a[i++] = stack->stack_a[i + 1];
-    stack->stack_a[stack->size_stack_a - 1] = stack->tmp;
+	while (i < (stack->size_stack_a - 1))
+	{
+		stack->stack_a[i] = stack->stack_a[i + 1];
+		i++;
+	}
+	stack->stack_a[stack->size_stack_a - 1] = stack->tmp;
     if (stack->flag == 0)
+	{
     	write(1, "ra\n", 3);
+	}
 	stack->count_moves++;
 }
 
@@ -34,11 +39,16 @@ void	rotate_b(t_stacks *stack)
     if (stack->size_stack_b > 0)
 	{
 		stack->tmp = stack->stack_b[0];
-		while (i < stack->size_stack_b)
-			stack->stack_b[i++] = stack->stack_b[i + 1];
+		while (i < (stack->size_stack_b - 1))
+		{
+			stack->stack_b[i] = stack->stack_b[i + 1];
+			i++;
+		}
 		stack->stack_b[stack->size_stack_b - 1] = stack->tmp;
         if (stack->flag == 0)
+		{
 	    	write(1, "rb\n", 3);
+		}
 		stack->count_moves++;
 	}
 }

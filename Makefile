@@ -16,19 +16,19 @@ SRC			=	src/push_swap.c \
 				src/push_swap_utils_2.c
 
 CC			=	gcc
-CGLAGS		=	-Wall -Wextra -Werror -I${HEADER} -fsanitize=address
+FLAGS		=	-Wall -Wextra -Werror -I${HEADER} -fsanitize=address
 
 all:		obj $(NAME)
 
 $(NAME):	$(OBJ)
-			@$(CC) $(FLAGS) -o $@ $^
+			$(CC) $(FLAGS) -o $@ $^
 
 obj:
 			@mkdir -p obj
 
 obj/%.o:	src/%.c
 			@echo "$@ $(GREEN)created$(RESET)"
-			@$(CC) $(FLAGS) $(INC) -o $@ -c $<
+			$(CC) $(FLAGS) $(INC) -o $@ -c $<
 
 clean:
 			@rm -rf $(OBJ) obj
