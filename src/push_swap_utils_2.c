@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:22 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/14 23:09:27 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/17 01:10:22 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_isalpha(int c)
 		return (0);
 }
 
-void	is_non_number(char **argv, t_stacks *stack)
+void	is_non_number(char **argv)
 {
 	int	i;
 	int j;
@@ -37,7 +37,10 @@ void	is_non_number(char **argv, t_stacks *stack)
 		{
 			k = ft_isalpha(argv[i][j]);
 			if (k == 0)
-				stack->flag = 1;
+			{
+				write(2,"Error\n", 6);
+				exit (1);
+			}
 			j++;
 		}
 		i++;

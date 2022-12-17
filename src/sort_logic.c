@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 23:52:42 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/16 00:48:35 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/17 01:25:13 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,25 @@ void	sort_three_numbers_b(t_stacks *stack)
 		swap_b(stack);
 }
 
+void	find_biggest(t_stacks *stack)
+{
+	int	i;
+
+	i = 0;
+	stack->nbr_biggest = stack->stack_a[0];
+	while (i < stack->size_stack_a -1)
+	{
+		if (stack->stack_a[i] <= stack->nbr_biggest)
+			stack->nbr_biggest = stack->stack_a[i];
+		i++;
+	}
+}
+
 void	sort_logic(t_stacks *stack)
 {
-	while (stack->size_stack_a > 3)
+	while (stack->stack_a)
 	{
-		sort_three_numbers_a(stack);
-		push_b(stack);
-		if (stack->size_stack_b > 2)
-			sort_three_numbers_b(stack);
+		/* code */
 	}
-	while (stack->size_stack_b > 0)
-	{
-		sort_three_numbers_a(stack);
-		push_a(stack);
-		if (stack->size_stack_b > 2)
-			sort_three_numbers_b(stack);
-	}
+	
 }

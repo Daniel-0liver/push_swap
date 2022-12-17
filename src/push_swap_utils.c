@@ -6,13 +6,13 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/16 01:22:05 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/17 01:11:52 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_atoi(const char *nptr, t_stacks *stack)
+int	ft_atoi(const char *nptr)
 {
 	int		i;
 	long	result;
@@ -30,7 +30,10 @@ int	ft_atoi(const char *nptr, t_stacks *stack)
 	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
 		result = result * 10 + (nptr[i++] - '0');
 	if ((result * sig) == 2147483648 || (result * sig) == -2147483649)
-		stack->flag = 1;
+	{
+		write(2,"Error\n", 6);
+		exit (1);
+	}
 	return (result * sig);
 }
 
@@ -40,15 +43,16 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 
 	stack->flag = 0;
 	stack->count_moves = 0;
+	stack->nbr_loops = 0;
 	stack->size_of_elements = (argc -1);
 	stack->size_stack_a = stack->size_of_elements;
 	stack->size_stack_b = 0;
 	stack->stack_a = (int*) malloc(stack->size_of_elements * sizeof(int));
-	is_non_number(argv, stack);
+	is_non_number(argv);
 	i = 0;
 	while (i < stack->size_of_elements)
 	{
-		stack->stack_a[i] = ft_atoi(argv[i + 1], stack);
+		stack->stack_a[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
 	if (stack->size_of_elements > 1)
