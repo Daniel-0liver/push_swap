@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/16 23:52:20 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:34:10 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,18 @@ void	is_sorted(t_stacks *stack)
 
 void    push_swap(t_stacks *stack)
 {
+	is_sorted(stack);
 	if (stack->size_of_elements == 3)
 		sort_three_numbers_a(stack);
-	is_sorted(stack);
-	printf("is sorted : %d\n", stack->is_sorted);
+	if (stack->size_of_elements > 3 && stack->size_of_elements <= 9 && stack->is_sorted == 1)
+		sort_nine_numbers(stack);
+	// printf("is sorted : %d\n", stack->is_sorted);
 	if (stack->is_sorted == 1)
 	{
 		while (stack->is_sorted == 1)
 		{	
 			sort_logic(stack);
-			print_stacks(stack);
+			// print_stacks(stack);
 			is_sorted(stack);
 		}
 	}
@@ -79,9 +81,9 @@ int main(int argc, char **argv)
 	init_stacks(&stack, argc, argv);
 	if (handiling_erros(&stack) == 1)
 		return (0);
-	print_stacks(&stack);
 	push_swap(&stack);
-	printf("Count moves: %d Number loops: %d", stack.count_moves, stack.nbr_loops);
+	// print_stacks(&stack);
+	// printf("Count moves: %d Number loops: %d", stack.count_moves, stack.nbr_loops);
 	free_stack(&stack);
 	return (0);
 }

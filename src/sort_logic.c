@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 23:52:42 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/17 01:25:13 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/18 20:14:02 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,42 @@ void	sort_three_numbers_b(t_stacks *stack)
 		swap_b(stack);
 }
 
-void	find_biggest(t_stacks *stack)
+void	sort_nine_numbers(t_stacks *stack)
 {
-	int	i;
-
-	i = 0;
-	stack->nbr_biggest = stack->stack_a[0];
-	while (i < stack->size_stack_a -1)
+	is_sorted(stack);
+	while (stack->size_stack_a > 3 && stack->is_sorted == 1)
 	{
-		if (stack->stack_a[i] <= stack->nbr_biggest)
-			stack->nbr_biggest = stack->stack_a[i];
-		i++;
+		push_b(stack);
+	}
+	sort_three_numbers_a(stack);
+	while (stack->size_stack_b > 0 && stack->is_sorted == 1)
+	{
+		// print_stacks(stack);
+		push_a(stack);
+		sort_three_numbers_a(stack);
 	}
 }
 
 void	sort_logic(t_stacks *stack)
 {
-	while (stack->stack_a)
+	while (stack->size_stack_a > 3)
 	{
-		/* code */
+		find_lowest_nbr(stack);
+		// printf("Lowest = %d\nBiggest = %d\nstack[0] = %d\n", stack->nbr_lowest, stack->nbr_biggest, stack->stack_a[0]);
+		while (stack->stack_a[0] != stack->nbr_lowest)
+		{
+			if (stack->posit_lowest < (stack->size_stack_a / 2))
+				rotate_a(stack);
+			else
+				reverse_rotate_a(stack);
+		}
+		push_b(stack);
+		sort_three_numbers_b(stack);
 	}
-	
+	while (stack->size_stack_b > 0)
+	{
+		sort_three_numbers_a(stack);
+		push_a(stack);
+	}
+	stack->nbr_loops++;
 }
