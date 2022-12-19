@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 23:52:42 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/18 20:14:02 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/19 21:19:36 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,49 @@ void	sort_three_numbers_b(t_stacks *stack)
 		swap_b(stack);
 }
 
-void	sort_nine_numbers(t_stacks *stack)
+void	sort_five_numbers(t_stacks *stack)
 {
-	is_sorted(stack);
-	while (stack->size_stack_a > 3 && stack->is_sorted == 1)
+	while (stack->size_stack_a > 3)
 	{
-		push_b(stack);
+		if (stack->size_stack_b > 2 && stack->stack_b[0] < stack->stack_b[1])
+		{
+			if (stack->stack_a[0] < stack->stack_a[1])
+				swap_a_and_b(stack);
+			else
+				swap_b(stack);
+		}
+		else if (stack->stack_a[0] > stack->stack_a[1])
+			swap_a(stack);
+		else if (stack->stack_a[0] > stack->stack_a[stack->size_stack_a - 1])
+			reverse_rotate_a(stack);
+		else
+			push_b(stack);
 	}
+	// print_stacks(stack);
+	// print_stacks(stack);
 	sort_three_numbers_a(stack);
-	while (stack->size_stack_b > 0 && stack->is_sorted == 1)
+	// print_stacks(stack);
+	stack_a_is_sorted(stack);
+	while (stack->size_stack_b > 0 || stack->stack_a_is_sorted == 1)
 	{
+		// print_stacks(stack);
+		if (stack->stack_a_is_sorted == 1)
+		{
+			while (stack->nbr_a_not_sorted != stack->stack_a[0])
+				rotate_a(stack);
+			if (stack->stack_a[0] > stack->stack_a[1])
+				swap_a(stack);
+			else if (stack->size_stack_b > 0)
+				push_a(stack);
+		}
 		// print_stacks(stack);
 		push_a(stack);
 		sort_three_numbers_a(stack);
+		stack_a_is_sorted(stack);
+		// print_stacks(stack);
 	}
+	// print_stacks(stack);
+	is_sorted(stack);
 }
 
 void	sort_logic(t_stacks *stack)

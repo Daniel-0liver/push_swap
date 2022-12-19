@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:22 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/18 20:03:32 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:37:50 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,26 @@ void	find_lowest_nbr(t_stacks *stack)
 		{
 			stack->nbr_lowest = stack->stack_a[i];
 			stack->posit_lowest = i;
+		}
+		i++;
+	}
+}
+
+void	stack_a_is_sorted(t_stacks *stack)
+{
+	int	i;
+
+	i = 0;
+	while (i < (stack->size_stack_a - 1))
+	{
+		if (stack->stack_a[i] < stack->stack_a[i + 1])
+			stack->stack_a_is_sorted = 0;
+		else
+		{
+			stack->stack_a_is_sorted = 1;
+			stack->nbr_a_not_sorted = stack->stack_a[i];
+			stack->posit_a_not_sorted = i;
+			return ;
 		}
 		i++;
 	}
