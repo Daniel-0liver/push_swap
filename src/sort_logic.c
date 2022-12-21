@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 23:52:42 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/19 21:19:36 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/21 00:41:26 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	sort_three_numbers_b(t_stacks *stack)
 		swap_b(stack);
 }
 
-void	sort_five_numbers(t_stacks *stack)
+void	sort_five_nbr_util(t_stacks *stack)
 {
 	while (stack->size_stack_a > 3)
 	{
@@ -77,54 +77,108 @@ void	sort_five_numbers(t_stacks *stack)
 			reverse_rotate_a(stack);
 		else
 			push_b(stack);
+		if (stack->size_stack_b > 2)
+			sort_three_numbers_b(stack);
 	}
-	// print_stacks(stack);
-	// print_stacks(stack);
+}
+
+void	sort_five_numbers(t_stacks *stack)
+{
+	sort_five_nbr_util(stack);
 	sort_three_numbers_a(stack);
-	// print_stacks(stack);
 	stack_a_is_sorted(stack);
+	if (stack->stack_b[0] < stack->stack_b[1])
+		swap_b(stack);
 	while (stack->size_stack_b > 0 || stack->stack_a_is_sorted == 1)
 	{
-		// print_stacks(stack);
-		if (stack->stack_a_is_sorted == 1)
+		while (stack->stack_a_is_sorted == 1)
 		{
 			while (stack->nbr_a_not_sorted != stack->stack_a[0])
 				rotate_a(stack);
 			if (stack->stack_a[0] > stack->stack_a[1])
 				swap_a(stack);
-			else if (stack->size_stack_b > 0)
-				push_a(stack);
+			sort_three_numbers_a(stack);
+			stack_a_is_sorted(stack);
 		}
-		// print_stacks(stack);
 		push_a(stack);
-		sort_three_numbers_a(stack);
+		if (stack->stack_b[0] < stack->stack_b[1] && stack->size_stack_b > 1)
+			swap_b(stack);
 		stack_a_is_sorted(stack);
-		// print_stacks(stack);
 	}
-	// print_stacks(stack);
 	is_sorted(stack);
 }
 
 void	sort_logic(t_stacks *stack)
 {
-	while (stack->size_stack_a > 3)
+	while (stack->size_stack_a > 0)
 	{
-		find_lowest_nbr(stack);
-		// printf("Lowest = %d\nBiggest = %d\nstack[0] = %d\n", stack->nbr_lowest, stack->nbr_biggest, stack->stack_a[0]);
-		while (stack->stack_a[0] != stack->nbr_lowest)
+		// find_lowest_nbr(stack);
+		find_second_lowest_nbr(stack);
+		// printf("lowest = %d  lowest_sec = %d \n", stack->nbr_lowest, stack->nbr_sec_lowest);
+		if (((stack->posit_lowest < (stack->size_stack_a / 2)) && ((stack->size_stack_a - stack->posit_sec_lowest) > stack->posit_lowest)) 
+			|| (stack->posit_sec_lowest < (stack->size_stack_a / 2) && ((stack->size_stack_a - stack->posit_lowest) > stack->posit_sec_lowest)))
 		{
-			if (stack->posit_lowest < (stack->size_stack_a / 2))
-				rotate_a(stack);
+			if (stack->posit_lowest < stack->posit_sec_lowest)
+				while (stack->stack_a[0] != stack->nbr_lowest)
+					rotate_a(stack);
 			else
-				reverse_rotate_a(stack);
+				while (stack->stack_a[0] != stack->nbr_sec_lowest)
+					rotate_a(stack);
 		}
+		else
+			if (stack->posit_lowest > stack->posit_sec_lowest)
+				while (stack->stack_a[0] != stack->nbr_lowest)
+					reverse_rotate_a(stack);
+			else
+				while (stack->stack_a[0] != stack->nbr_sec_lowest)
+					reverse_rotate_a(stack);
+		if (stack->size_stack_a > 1 && stack->stack_a[0] > stack->stack_a[1])
+			swap_a(stack);
+		else if (stack->size_stack_a > 1 && stack->stack_a[0] > stack->stack_a[stack->size_stack_a - 1])
+			reverse_rotate_a(stack);
 		push_b(stack);
-		sort_three_numbers_b(stack);
+		if (stack->stack_b[0] < stack->stack_b[1] && stack->size_stack_b > 1)
+			swap_b(stack);
 	}
-	while (stack->size_stack_b > 0)
+	sort_three_numbers_a(stack);
+	stack_a_is_sorted(stack);
+	if (stack->stack_b[0] < stack->stack_b[1])
+		swap_b(stack);
+	while (stack->size_stack_b > 0 || stack->stack_a_is_sorted == 1)
 	{
-		sort_three_numbers_a(stack);
+		while (stack->stack_a_is_sorted == 1)
+		{
+			while (stack->nbr_a_not_sorted != stack->stack_a[0])
+				rotate_a(stack);
+			if (stack->stack_a[0] > stack->stack_a[1])
+				swap_a(stack);
+			sort_three_numbers_a(stack);
+			stack_a_is_sorted(stack);
+		}
 		push_a(stack);
+		if (stack->stack_b[0] < stack->stack_b[1] && stack->size_stack_b > 1)
+			swap_b(stack);
+		stack_a_is_sorted(stack);
 	}
-	stack->nbr_loops++;
 }
+
+	// while (stack->size_stack_a > 3)
+	// {
+	// 	find_lowest_nbr(stack);
+	// 	// printf("Lowest = %d\nBiggest = %d\nstack[0] = %d\n", stack->nbr_lowest, stack->nbr_biggest, stack->stack_a[0]);
+	// 	while (stack->stack_a[0] != stack->nbr_lowest)
+	// 	{
+	// 		if (stack->posit_lowest < (stack->size_stack_a / 2))
+	// 			rotate_a(stack);
+	// 		else
+	// 			reverse_rotate_a(stack);
+	// 	}
+	// 	push_b(stack);
+	// 	sort_three_numbers_b(stack);
+	// }
+	// while (stack->size_stack_b > 0)
+	// {
+	// 	sort_three_numbers_a(stack);
+	// 	push_a(stack);
+	// }
+	// stack->nbr_loops++;

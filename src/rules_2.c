@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 05:28:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/19 01:53:58 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/19 23:12:28 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ void	rotate_a_and_b(t_stacks *stack)
 void	sa_rra(t_stacks *stack)
 {
 	swap_a(stack);
+	if (stack->stack_a[0] < stack->stack_a[1] && stack->stack_a[1] >
+			stack->stack_a[stack->size_stack_a - 1] && stack->stack_a[0]
+				> stack->stack_a[stack->size_stack_a - 1])
+		reverse_rotate_a(stack);
 	if (stack->size_stack_b > 1 && stack->stack_b[0] > 
 		stack->stack_a[stack->size_stack_a - 1] 
 			&& stack->stack_b[0] < stack->stack_a[1])
@@ -73,23 +77,19 @@ void	sa_rra(t_stacks *stack)
 		if (stack->stack_a[0] > stack->stack_a[1])
 			swap_a(stack);
 	}
-	if (stack->stack_a[0] < stack->stack_a[1] && stack->stack_a[1] >
-			stack->stack_a[stack->size_stack_a - 1] && stack->stack_a[0]
-				> stack->stack_a[stack->size_stack_a - 1])
-		reverse_rotate_a(stack);
 }
 
 void	sa_ra(t_stacks *stack)
 {
 	swap_a(stack);
+	if (stack->stack_a[0] > stack->stack_a[1] && stack->stack_a[1] <
+			stack->stack_a[stack->size_stack_a - 1] && stack->stack_a[0]
+				> stack->stack_a[stack->size_stack_a - 1])
+		rotate_a(stack);
 	if (stack->size_stack_b > 1 && stack->stack_b[0] > stack->size_stack_a - 1)
 	{
 		push_a(stack);
 		if (stack->stack_a[0] > stack->stack_a[1])
 			swap_a(stack);
 	}
-	if (stack->stack_a[0] > stack->stack_a[1] && stack->stack_a[1] <
-			stack->stack_a[stack->size_stack_a - 1] && stack->stack_a[0]
-				> stack->stack_a[stack->size_stack_a - 1])
-		rotate_a(stack);
 }
