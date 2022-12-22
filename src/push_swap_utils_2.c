@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:22 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 12:08:23 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:34:19 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ void	find_lowest_nbr(t_stacks *stack)
 
 void	find_second_lowest_nbr(t_stacks *stack)
 {
-	int	i;
-	int	j;
-	int k;
-	int nbr_count[SIZE_NBR];
-	int posit_count[SIZE_NBR];
+	long	i;
+	long	j;
+	long 	k;
+	long 	nbr_count[SIZE_NBR];
+	long 	posit_count[SIZE_NBR];
 
 	find_lowest_nbr(stack);
 	find_biggest_nbr(stack);
@@ -150,14 +150,6 @@ void	find_second_lowest_nbr(t_stacks *stack)
 	}
 	else 
 		find_lowest_nbr(stack);
-	// i = 0;
-	// while (i < SIZE_NBR)
-	// {
-	// 	printf("nbr_count[%d] = %d, posit_count[%d] = %d\n", i, nbr_count[i], i, posit_count[i]);
-	// 	i++;
-	// }
-	// printf("low = %d, posit = %d\n", stack->nbr_lowest, stack->posit_lowest);
-	// exit(0);
 }
 
 void	stack_a_is_sorted(t_stacks *stack)

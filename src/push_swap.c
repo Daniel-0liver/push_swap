@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 11:42:30 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:43:44 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void    print_stacks(t_stacks *stack)
 	i = 0;
     while (i < stack->size_stack_a)
     {
-		printf("stack A position %d = %d\n", i, stack->stack_a[i]);
+		printf("stack A position %d = %ld\n", i, stack->stack_a[i]);
 		i++;
     }
 	puts("");
     i = 0;
     while (i < stack->size_stack_b && stack->size_stack_b != 0)
     {
-        printf("stack B position %d = %d\n", i, stack->stack_b[i]);
+        printf("stack B position %d = %ld\n", i, stack->stack_b[i]);
 	    i++; 
     }
 	puts("");
@@ -56,11 +56,11 @@ void	is_sorted(t_stacks *stack)
 void    push_swap(t_stacks *stack)
 {
 	is_sorted(stack);
-	// if (stack->size_of_elements == 3)
-	// 	sort_three_numbers_a(stack);
-	// if (stack->size_of_elements > 3 && stack->size_of_elements <= 9 && stack->is_sorted == 1)
-	// 	sort_five_numbers(stack);
-	// printf("is sorted : %d\n", stack->is_sorted);
+	if (stack->size_of_elements == 3)
+		sort_three_numbers_a(stack);
+	if (stack->size_of_elements > 3 && stack->size_of_elements <= 9 && stack->is_sorted == 1)
+		sort_five_numbers(stack);
+	is_sorted(stack);
 	if (stack->is_sorted == 1)
 	{
 		while (stack->is_sorted == 1)
@@ -79,11 +79,12 @@ int main(int argc, char **argv)
 	if (argc <= 2)
 		return (0);
 	init_stacks(&stack, argc, argv);
+	// print_stacks(&stack);
 	if (handiling_erros(&stack) == 1)
 		return (0);
 	push_swap(&stack);
 	// print_stacks(&stack);
-	// printf("Count moves: %d Number loops: %d", stack.count_moves, stack.nbr_loops);
+	// printf("Count moves: %ld Number loops: %ld", stack.count_moves, stack.nbr_loops);
 	free_stack(&stack);
 	return (0);
 }

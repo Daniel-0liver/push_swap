@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:46:01 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 12:37:20 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:35:26 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,29 @@
 
 typedef struct d_stacks
 {
-	int		*stack_a;
-	int		*stack_b;
-    int     size_stack_a;
-    int     size_stack_b;
-    int		nbr_loops;
-    int		size_of_elements;
-    int     tmp;
-    int     flag;
-	int		count_moves;
-	int		is_sorted;
-	int		stack_a_is_sorted;
-	int		nbr_lowest;
-	int		nbr_sec_lowest;
-	int		nbr_biggest;
-	int		posit_lowest;
-	int		posit_sec_lowest;
-	int		posit_biggest;
-	int		nbr_a_not_sorted;
-	int		posit_a_not_sorted;
+	long		*stack_a;
+	long		*stack_b;
+    long     size_stack_a;
+    long     size_stack_b;
+    long		nbr_loops;
+    long		size_of_elements;
+    long     tmp;
+    long     flag;
+	long		count_moves;
+	long		is_sorted;
+	long		stack_a_is_sorted;
+	long		nbr_lowest;
+	long		nbr_sec_lowest;
+	long		nbr_biggest;
+	long		posit_lowest;
+	long		posit_sec_lowest;
+	long		posit_biggest;
+	long		nbr_a_not_sorted;
+	long		posit_a_not_sorted;
 }              t_stacks;
 
 // libft functions
-int		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 int		ft_isalpha(int c);
 
 

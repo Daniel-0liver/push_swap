@@ -6,13 +6,13 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/17 01:11:52 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/22 16:47:46 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
 	int		i;
 	long	result;
@@ -29,9 +29,9 @@ int	ft_atoi(const char *nptr)
 			sig *= -1;
 	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
 		result = result * 10 + (nptr[i++] - '0');
-	if ((result * sig) == 2147483648 || (result * sig) == -2147483649)
+	if ((result * sig) >= 2147483648 || (result * sig) <= -2147483649)
 	{
-		write(2,"Error\n", 6);
+		write(STDERR_FILENO,"Error\n", 6);
 		exit (1);
 	}
 	return (result * sig);
@@ -47,7 +47,7 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 	stack->size_of_elements = (argc -1);
 	stack->size_stack_a = stack->size_of_elements;
 	stack->size_stack_b = 0;
-	stack->stack_a = (int*) malloc(stack->size_of_elements * sizeof(int));
+	stack->stack_a = (long*) malloc(stack->size_of_elements * sizeof(long));
 	is_non_number(argv);
 	i = 0;
 	while (i < stack->size_of_elements)
@@ -56,7 +56,7 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 		i++;
 	}
 	if (stack->size_of_elements > 1)
-		stack->stack_b = (int*) malloc(stack->size_of_elements * sizeof(int));
+		stack->stack_b = (long*) malloc(stack->size_of_elements * sizeof(long));
 }
 
 int	handiling_erros(t_stacks *stack)
@@ -72,7 +72,7 @@ int	handiling_erros(t_stacks *stack)
 		return (1);
 	if (stack->flag == 1)
 	{
-		write(2,"Error\n", 6);
+		write(STDERR_FILENO,"Error\n", 6);
 		return (1);
 	}
 	return (0);
@@ -91,7 +91,7 @@ int	is_duplicated(t_stacks *stack)
 		{
 			if (stack->stack_a[i] == stack->stack_a[j])
 			{
-				write(2,"Error\n", 6);
+				write(STDERR_FILENO,"Error\n", 6);
 				free_stack(stack);
 				return (1);
 			}
