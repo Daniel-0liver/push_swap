@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:46:01 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 15:35:26 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:43:39 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ typedef struct d_stacks
 {
 	long		*stack_a;
 	long		*stack_b;
-    long     size_stack_a;
-    long     size_stack_b;
+    long    	 size_stack_a;
+    long    	 size_stack_b;
     long		nbr_loops;
     long		size_of_elements;
-    long     tmp;
-    long     flag;
+    long    	 tmp;
+    long    	 flag;
 	long		count_moves;
 	long		is_sorted;
 	long		stack_a_is_sorted;
@@ -44,7 +44,7 @@ typedef struct d_stacks
 
 // libft functions
 long	ft_atoi(const char *nptr);
-int		ft_isalpha(int c);
+int		ft_isdigit(int c);
 
 
 // push_swap functions

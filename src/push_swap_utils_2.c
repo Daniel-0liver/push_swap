@@ -6,16 +6,15 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:22 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 15:34:19 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:47:55 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_isalpha(int c)
+int	ft_isdigit(int c)
 {
-	if (!((c >= 'A' && c <= 'Z') || (c
-				>= 'a' && c <= 'z')))
+	if ((c >= '0' && c <= '9') || c == '-')
 	{
 		return (1);
 	}
@@ -35,10 +34,10 @@ void	is_non_number(char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			k = ft_isalpha(argv[i][j]);
+			k = ft_isdigit(argv[i][j]);
 			if (k == 0)
 			{
-				write(2,"Error\n", 6);
+				write(STDERR_FILENO,"Error\n", 6);
 				exit (1);
 			}
 			j++;

@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 15:43:44 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:33:04 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 {
     t_stacks    stack;
 
-	if (argc <= 2)
+	if (argc <= 1)
 		return (0);
 	init_stacks(&stack, argc, argv);
 	// print_stacks(&stack);

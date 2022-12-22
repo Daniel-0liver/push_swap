@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 16:47:46 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:28:13 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ long	ft_atoi(const char *nptr)
 			sig *= -1;
 	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
 		result = result * 10 + (nptr[i++] - '0');
-	if ((result * sig) >= 2147483648 || (result * sig) <= -2147483649)
+	if ((result * sig) >= 2147483647 || (result * sig) <= -2147483648)
 	{
 		write(STDERR_FILENO,"Error\n", 6);
 		exit (1);
