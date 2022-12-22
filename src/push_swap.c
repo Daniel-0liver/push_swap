@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/20 10:35:55 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/22 11:42:30 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	is_sorted(t_stacks *stack)
 void    push_swap(t_stacks *stack)
 {
 	is_sorted(stack);
-	if (stack->size_of_elements == 3)
-		sort_three_numbers_a(stack);
-	if (stack->size_of_elements > 3 && stack->size_of_elements <= 9 && stack->is_sorted == 1)
-		sort_five_numbers(stack);
+	// if (stack->size_of_elements == 3)
+	// 	sort_three_numbers_a(stack);
+	// if (stack->size_of_elements > 3 && stack->size_of_elements <= 9 && stack->is_sorted == 1)
+	// 	sort_five_numbers(stack);
 	// printf("is sorted : %d\n", stack->is_sorted);
 	if (stack->is_sorted == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:22 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 01:05:15 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/22 12:08:23 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	find_biggest_nbr(t_stacks *stack)
 	i = 0;
 	stack->nbr_biggest = stack->stack_a[0];
 	stack->nbr_biggest = 0;
-	while (i < stack->size_stack_a -1 && stack->size_stack_a > 0)
+	while (i < (stack->size_stack_a - 1) && stack->size_stack_a > 0)
 	{
 		if (stack->stack_a[i] >= stack->nbr_biggest)
 		{
@@ -72,7 +72,7 @@ void	find_lowest_nbr(t_stacks *stack)
 	i = 0;
 	stack->nbr_lowest = stack->stack_a[0];
 	stack->posit_lowest = 0;
-	while (i < stack->size_stack_a && stack->size_stack_a > 0)
+	while (i < (stack->size_stack_a - 1) && stack->size_stack_a > 0)
 	{
 		if (stack->stack_a[i] <= stack->nbr_lowest)
 		{
@@ -114,7 +114,6 @@ void	find_second_lowest_nbr(t_stacks *stack)
 				{
 					stack->nbr_lowest = stack->stack_a[i];
 					stack->posit_lowest = i;
-					printf("nbr = %d, posit = %d\n", stack->nbr_lowest, stack->posit_lowest);
 				}
 				j++;
 			}
@@ -126,16 +125,15 @@ void	find_second_lowest_nbr(t_stacks *stack)
 	}
 	k = 0;
 	j = 0;
-	if (((stack->size_stack_a - 1) - posit_count[k]) < posit_count[k])
-		i = (stack->size_stack_a - 1) - posit_count[k];
+	if ((stack->size_stack_a - posit_count[k]) < posit_count[k])
+		i = stack->size_stack_a - posit_count[k];
 	else
 		i = posit_count[k];
 	while (k < SIZE_NBR)
 	{
-		if (((stack->size_stack_a - 1) - posit_count[k]) < posit_count[k] && ((stack->size_stack_a - 1) - posit_count[k]) < i)
+		if ((stack->size_stack_a - posit_count[k]) < posit_count[k] && (stack->size_stack_a - posit_count[k]) < i)
 		{
-			i = (stack->size_stack_a - 1) - posit_count[k];
-			printf("%d\n", i);
+			i = stack->size_stack_a - posit_count[k];
 			j = k;
 		}
 		else if (posit_count[k] < i)
@@ -145,16 +143,21 @@ void	find_second_lowest_nbr(t_stacks *stack)
 		}
 		k++;
 	}
-	stack->nbr_lowest = nbr_count[j];
-	stack->posit_lowest = posit_count[j];
-	i = 0;
-	while (i < SIZE_NBR)
+	if (stack->size_stack_a > SIZE_NBR)
 	{
-		printf("nbr_count[%d] = %d, posit_count[%d] = %d\n", i, nbr_count[i], i, posit_count[i]);
-		i++;
+		stack->nbr_lowest = nbr_count[j];
+		stack->posit_lowest = posit_count[j];
 	}
-	printf("low = %d, posit = %d\n", stack->nbr_lowest, stack->posit_lowest);
-	exit(0);
+	else 
+		find_lowest_nbr(stack);
+	// i = 0;
+	// while (i < SIZE_NBR)
+	// {
+	// 	printf("nbr_count[%d] = %d, posit_count[%d] = %d\n", i, nbr_count[i], i, posit_count[i]);
+	// 	i++;
+	// }
+	// printf("low = %d, posit = %d\n", stack->nbr_lowest, stack->posit_lowest);
+	// exit(0);
 }
 
 void	stack_a_is_sorted(t_stacks *stack)
