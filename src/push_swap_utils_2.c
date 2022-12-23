@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:22 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/23 02:02:06 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:57:59 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int	ft_isdigit(int c)
 {
-	if ((c >= '0' && c <= '9') || c == '-')
-	{
+	if ((c >= '0' && c <= '9'))
 		return (1);
-	}
 	else
 		return (0);
 }
@@ -25,22 +23,24 @@ int	ft_isdigit(int c)
 void	is_non_number(char **argv)
 {
 	int	i;
-	int j;
-	int	k;
+	int	j;
 
 	i = 1;
 	while (argv[i])
 	{
 		j = 0;
-		while (argv[i][j])
-		{
-			k = ft_isdigit(argv[i][j]);
-			if (k == 0)
-			{
-				write(STDERR_FILENO,"Error\n", 6);
-				exit (1);
-			}
+		while ((ft_isdigit(argv[i][j])) == 1 && argv[i][j])
 			j++;
+		if ((argv[i][j] == '-' || argv[i][j] == '+') && (ft_isdigit(argv[i][j + 1])))
+		{
+			j++;
+			while ((ft_isdigit(argv[i][j]) == 1))
+				j++;
+		}
+		if (argv[i][j] && ft_isdigit(argv[i][j]) == 0)
+		{
+			write (2, "Error\n", 6);
+			exit (-1);
 		}
 		i++;
 	}
@@ -180,8 +180,6 @@ void	find_biggest_nbr_b(t_stacks *stack)
 	stack->posit_biggest = 0;
 	while (i < (stack->size_stack_b) && stack->size_stack_b > 0)
 	{
-		// stack->nbr_biggest = stack->stack_b[0];
-		// stack->nbr_biggest = 0;
 		if (stack->stack_b[i] >= stack->nbr_biggest)
 		{
 			stack->nbr_biggest = stack->stack_b[i];

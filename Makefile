@@ -16,7 +16,7 @@ SRC			=	src/push_swap.c \
 				src/push_swap_utils_2.c
 
 CC			=	gcc
-FLAGS		=	-Wall -Wextra -Werror -I${HEADER} #-fsanitize=address
+FLAGS		=	-Wall -Wextra -Werror -I${HEADER} -fsanitize=address
 
 all:		obj $(NAME)
 

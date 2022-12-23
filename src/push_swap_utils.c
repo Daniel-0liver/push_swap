@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 17:28:13 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:36:29 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ long	ft_atoi(const char *nptr)
 			sig *= -1;
 	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
 		result = result * 10 + (nptr[i++] - '0');
-	if ((result * sig) >= 2147483647 || (result * sig) <= -2147483648)
+	if ((result * sig) > 2147483647 || (result * sig) < -2147483648)
 	{
 		write(STDERR_FILENO,"Error\n", 6);
-		exit (1);
+		exit (-1);
 	}
 	return (result * sig);
 }
@@ -54,6 +54,11 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 	{
 		stack->stack_a[i] = ft_atoi(argv[i + 1]);
 		i++;
+	}
+	if (argc <= 2)
+	{
+		write(1, "\n", 1);
+		exit(0);
 	}
 	if (stack->size_of_elements > 1)
 		stack->stack_b = (long*) malloc(stack->size_of_elements * sizeof(long));
