@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:22 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 17:47:55 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/23 02:02:06 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,26 @@ void	stack_a_is_sorted(t_stacks *stack)
 			stack->nbr_a_not_sorted = stack->stack_a[i];
 			stack->posit_a_not_sorted = i;
 			return ;
+		}
+		i++;
+	}
+}
+
+void	find_biggest_nbr_b(t_stacks *stack)
+{
+	int	i;
+
+	i = 0;
+	stack->nbr_biggest = stack->stack_b[0];
+	stack->posit_biggest = 0;
+	while (i < (stack->size_stack_b) && stack->size_stack_b > 0)
+	{
+		// stack->nbr_biggest = stack->stack_b[0];
+		// stack->nbr_biggest = 0;
+		if (stack->stack_b[i] >= stack->nbr_biggest)
+		{
+			stack->nbr_biggest = stack->stack_b[i];
+			stack->posit_biggest = i;
 		}
 		i++;
 	}

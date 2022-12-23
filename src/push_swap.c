@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 17:33:04 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/23 02:23:11 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 		return (0);
 	push_swap(&stack);
 	// print_stacks(&stack);
-	// printf("Count moves: %ld Number loops: %ld", stack.count_moves, stack.nbr_loops);
+	printf("Count moves: %ld", stack.count_moves);
 	free_stack(&stack);
 	return (0);
 }

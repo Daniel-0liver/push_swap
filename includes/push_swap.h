@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:46:01 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/22 17:43:39 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/23 02:22:43 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 
-# define SIZE_NBR 4
+# define SIZE_NBR 20
 
 typedef struct d_stacks
 {
@@ -64,6 +64,7 @@ void	sort_three_numbers_a(t_stacks *stack);
 void	sort_three_numbers_b(t_stacks *stack);
 void	sort_five_numbers(t_stacks *stack);
 void	find_biggest_nbr(t_stacks *stack);
+void	find_biggest_nbr_b(t_stacks *stack);
 void	find_lowest_nbr(t_stacks *stack);
 void	find_second_lowest_nbr(t_stacks *stack);
 void	free_stack(t_stacks *stack);
