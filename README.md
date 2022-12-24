@@ -1,2 +1,2 @@
 # push_swap
-In finished, updates soon.
+Finished, updates soon.
