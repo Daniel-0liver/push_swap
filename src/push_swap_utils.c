@@ -6,13 +6,13 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/23 19:36:29 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/25 23:04:17 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-long	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr, t_stacks *stack)
 {
 	int		i;
 	long	result;
@@ -30,60 +30,55 @@ long	ft_atoi(const char *nptr)
 	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
 		result = result * 10 + (nptr[i++] - '0');
 	if ((result * sig) > 2147483647 || (result * sig) < -2147483648)
-	{
-		write(STDERR_FILENO,"Error\n", 6);
-		exit (-1);
-	}
+		free_stack(stack);
 	return (result * sig);
 }
 
 void    init_stacks(t_stacks *stack, int argc, char **argv)
 {
-	int	i;
-
 	stack->flag = 0;
 	stack->count_moves = 0;
-	stack->nbr_loops = 0;
 	stack->size_of_elements = (argc -1);
 	stack->size_stack_a = stack->size_of_elements;
 	stack->size_stack_b = 0;
-	stack->stack_a = (long*) malloc(stack->size_of_elements * sizeof(long));
-	is_non_number(argv);
-	i = 0;
-	while (i < stack->size_of_elements)
+	stack->stack_a = (int*) malloc(stack->size_of_elements * sizeof(int));
+	is_non_number(argv, stack);
+	stack->i = 0;
+	while (stack->i < stack->size_of_elements)
 	{
-		stack->stack_a[i] = ft_atoi(argv[i + 1]);
-		i++;
+		stack->stack_a[stack->i] = ft_atoi(argv[stack->i + 1], stack);
+		stack->i++;
 	}
-	if (argc <= 2)
+	if (stack->size_of_elements == 1)
 	{
-		write(1, "\n", 1);
-		exit(0);
+		write(STDOUT_FILENO, "\n", 1);
+		free(stack->stack_a);
+		exit(1);
 	}
 	if (stack->size_of_elements > 1)
-		stack->stack_b = (long*) malloc(stack->size_of_elements * sizeof(long));
+		stack->stack_b = (int*) malloc(stack->size_of_elements * sizeof(int));
 }
 
-int	handiling_erros(t_stacks *stack)
+void	handiling_erros(t_stacks *stack)
 {
 	if (stack->size_of_elements == 2)
 	{
 		if (stack->stack_a[0] > stack->stack_a[1])
 			swap_a(stack);
-		free_stack(stack);
-		return (1);
+		else
+			write(STDOUT_FILENO, "\n", 1);
+		free(stack->stack_a);
+		stack->stack_a = NULL;
+		free(stack->stack_b);
+		stack->stack_b = NULL;
+		exit(1);
 	}
-	if (is_duplicated(stack) == 1)
-		return (1);
+	is_duplicated(stack);
 	if (stack->flag == 1)
-	{
-		write(STDERR_FILENO,"Error\n", 6);
-		return (1);
-	}
-	return (0);
+		free_stack(stack);
 }
 
-int	is_duplicated(t_stacks *stack)
+void	is_duplicated(t_stacks *stack)
 {
 	int	i;
 	int	j;
@@ -95,25 +90,19 @@ int	is_duplicated(t_stacks *stack)
 		while (j < stack->size_of_elements)
 		{
 			if (stack->stack_a[i] == stack->stack_a[j])
-			{
-				write(STDERR_FILENO,"Error\n", 6);
 				free_stack(stack);
-				return (1);
-			}
 			j++;
 		}
 		i++;
 	}
-	return (0);
 }
 
 void	free_stack(t_stacks *stack)
 {
 	free(stack->stack_a);
 	stack->stack_a = NULL;
-	if (stack->stack_b)
-	{
-		free(stack->stack_b);
-		stack->stack_b = NULL;
-	}
+	free(stack->stack_b);
+	stack->stack_b = NULL;
+	write(STDERR_FILENO,"Error\n", 6);
+	exit(-1);
 }

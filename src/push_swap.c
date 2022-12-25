@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/23 12:26:53 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/25 23:17:23 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void    print_stacks(t_stacks *stack)
 	i = 0;
     while (i < stack->size_stack_a)
     {
-		printf("stack A position %d = %ld\n", i, stack->stack_a[i]);
+		printf("stack A position %d = %d\n", i, stack->stack_a[i]);
 		i++;
     }
 	puts("");
     i = 0;
     while (i < stack->size_stack_b && stack->size_stack_b != 0)
     {
-        printf("stack B position %d = %ld\n", i, stack->stack_b[i]);
+        printf("stack B position %d = %d\n", i, stack->stack_b[i]);
 	    i++; 
     }
 	puts("");
@@ -63,8 +63,12 @@ void    push_swap(t_stacks *stack)
 	is_sorted(stack);
 	if (stack->is_sorted == 1)
 	{
+		if (stack->size_of_elements > 9 && stack->size_of_elements < 110)
+			stack->nbr_lowest_by_size = 10;
+		else
+			stack->nbr_lowest_by_size = 20;
 		while (stack->is_sorted == 1)
-		{	
+		{
 			sort_logic(stack);
 			// print_stacks(stack);
 			is_sorted(stack);
@@ -80,11 +84,13 @@ int main(int argc, char **argv)
 		return (0);
 	init_stacks(&stack, argc, argv);
 	// print_stacks(&stack);
-	if (handiling_erros(&stack) == 1)
-		return (0);
+	handiling_erros(&stack);
 	push_swap(&stack);
 	// print_stacks(&stack);
 	// printf("Count moves: %ld", stack.count_moves);
-	free_stack(&stack);
+	free(stack.stack_a);
+	stack.stack_a = NULL;
+	free(stack.stack_b);
+	stack.stack_b = NULL;
 	return (0);
 }

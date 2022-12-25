@@ -13,10 +13,12 @@ SRC			=	src/push_swap.c \
 				src/rules_2.c \
 				src/rules_3.c \
 				src/sort_logic.c \
-				src/push_swap_utils_2.c
+				src/sort_logic_2.c \
+				src/push_swap_utils_2.c \
+				src/push_swap_utils_3.c
 
 CC			=	gcc
-FLAGS		=	-Wall -Wextra -Werror -I${HEADER} -fsanitize=address
+FLAGS		=	-Wall -Wextra -Werror -I${HEADER} #-fsanitize=address
 
 all:		obj $(NAME)
 

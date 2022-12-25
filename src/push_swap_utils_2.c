@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:22 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/23 12:57:59 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/25 23:12:38 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,30 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-void	is_non_number(char **argv)
+void	is_non_number(char **argv, t_stacks *stack)
 {
-	int	i;
 	int	j;
 
-	i = 1;
-	while (argv[i])
+	stack->i = 1;
+	while (argv[stack->i])
 	{
 		j = 0;
-		while ((ft_isdigit(argv[i][j])) == 1 && argv[i][j])
+		while ((ft_isdigit(argv[stack->i][j])) == 1 && argv[stack->i][j])
 			j++;
-		if ((argv[i][j] == '-' || argv[i][j] == '+') && (ft_isdigit(argv[i][j + 1])))
+		if ((argv[stack->i][j] == '-' || argv[stack->i][j] == '+') && (ft_isdigit(argv[stack->i][j + 1])))
 		{
 			j++;
-			while ((ft_isdigit(argv[i][j]) == 1))
+			while ((ft_isdigit(argv[stack->i][j]) == 1))
 				j++;
 		}
-		if (argv[i][j] && ft_isdigit(argv[i][j]) == 0)
+		if (argv[stack->i][j] && ft_isdigit(argv[stack->i][j]) == 0)
 		{
-			write (2, "Error\n", 6);
-			exit (-1);
+			free(stack->stack_a);
+			stack->stack_a = NULL;
+			write(STDERR_FILENO,"Error\n", 6);
+			exit(-1);
 		}
-		i++;
+		stack->i++;
 	}
 }
 
@@ -62,93 +63,6 @@ void	find_biggest_nbr(t_stacks *stack)
 		}
 		i++;
 	}
-}
-
-void	find_lowest_nbr(t_stacks *stack)
-{
-	int	i;
-
-	i = 0;
-	stack->nbr_lowest = stack->stack_a[0];
-	stack->posit_lowest = 0;
-	while (i < (stack->size_stack_a - 1) && stack->size_stack_a > 0)
-	{
-		if (stack->stack_a[i] <= stack->nbr_lowest)
-		{
-			stack->nbr_lowest = stack->stack_a[i];
-			stack->posit_lowest = i;
-		}
-		i++;
-	}
-}
-
-void	find_second_lowest_nbr(t_stacks *stack)
-{
-	long	i;
-	long	j;
-	long 	k;
-	long 	nbr_count[SIZE_NBR];
-	long 	posit_count[SIZE_NBR];
-
-	find_lowest_nbr(stack);
-	find_biggest_nbr(stack);
-	nbr_count[0] = stack->nbr_lowest;
-	posit_count[0] = stack->posit_lowest;
-	j = 1;
-	i = 0;
-	while (j < SIZE_NBR)
-		nbr_count[j++] = stack->nbr_biggest;
-	k = 1;
-	while (k < SIZE_NBR && stack->size_stack_a > 1)
-	{
-		stack->nbr_lowest = stack->nbr_biggest;
-		stack->posit_lowest = stack->posit_biggest;
-		i = 0;
-		while (i < stack->size_stack_a)
-		{
-			j = 0;
-			while (j < SIZE_NBR)
-			{
-				if (stack->stack_a[i] > nbr_count[k - 1] && stack->stack_a[i] < stack->nbr_lowest)
-				{
-					stack->nbr_lowest = stack->stack_a[i];
-					stack->posit_lowest = i;
-				}
-				j++;
-			}
-			i++;
-		}
-		nbr_count[k] = stack->nbr_lowest;
-		posit_count[k] = stack->posit_lowest;
-		k++;
-	}
-	k = 0;
-	j = 0;
-	if ((stack->size_stack_a - posit_count[k]) < posit_count[k])
-		i = stack->size_stack_a - posit_count[k];
-	else
-		i = posit_count[k];
-	while (k < SIZE_NBR)
-	{
-		if ((stack->size_stack_a - posit_count[k]) < posit_count[k] && (stack->size_stack_a - posit_count[k]) < i)
-		{
-			i = stack->size_stack_a - posit_count[k];
-			j = k;
-		}
-		else if (posit_count[k] < i)
-		{
-			i = posit_count[k];
-			j = k;
-		}
-		k++;
-	}
-	if (stack->size_stack_a > SIZE_NBR)
-	{
-		stack->nbr_lowest = nbr_count[j];
-		stack->posit_lowest = posit_count[j];
-	}
-	else 
-		find_lowest_nbr(stack);
 }
 
 void	stack_a_is_sorted(t_stacks *stack)
