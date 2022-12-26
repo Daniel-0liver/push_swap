@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 06:14:27 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/17 02:14:34 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/26 11:36:53 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ void	reverse_rotate_a(t_stacks *stack)
 		i--;
 	}
 	stack->stack_a[0] = stack->tmp;
-    if (stack->flag == 0)
+	if (stack->flag == 0)
 	{
-    	write(1, "rra\n", 4);
+		write(1, "rra\n", 4);
 	}
-	stack->count_moves++;	
+	stack->count_moves++;
 }
 
 void	reverse_rotate_b(t_stacks *stack)
 {
 	int	i;
 
-    if (stack->size_stack_b > 0)
-    {
+	if (stack->size_stack_b > 0)
+	{
 		i = stack->size_stack_b - 1;
 		stack->tmp = stack->stack_b[stack->size_stack_b - 1];
 		while (i > 0)
@@ -50,14 +50,14 @@ void	reverse_rotate_b(t_stacks *stack)
 			write(1, "rrb\n", 4);
 		}
 		stack->count_moves++;
-    }
+	}
 }
 
-void    reverse_rotate_a_and_b(t_stacks *stack)
+void	reverse_rotate_a_and_b(t_stacks *stack)
 {
 	stack->flag = 1;
-    reverse_rotate_a(stack);
-    reverse_rotate_b(stack);
+	reverse_rotate_a(stack);
+	reverse_rotate_b(stack);
 	write(1, "rrr\n", 4);
 	stack->flag = 0;
 }

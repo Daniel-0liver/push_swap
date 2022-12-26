@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/26 02:20:19 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/26 02:53:57 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ int	ft_atoi(const char *nptr, t_stacks *stack)
 	{
 		free(stack->stack_a);
 		stack->stack_a = NULL;
-		write(STDERR_FILENO,"Error\n", 6);
+		write(STDERR_FILENO, "Error\n", 6);
 		exit(-1);
 	}
 	return (result * sig);
 }
 
-void    init_stacks(t_stacks *stack, int argc, char **argv)
+void	init_stacks(t_stacks *stack, int argc, char **argv)
 {
 	stack->flag = 0;
 	stack->count_moves = 0;
 	stack->size_of_elements = (argc -1);
 	stack->size_stack_a = stack->size_of_elements;
 	stack->size_stack_b = 0;
-	stack->stack_a = (int*)malloc(stack->size_of_elements * sizeof(int));
+	stack->stack_a = (int *)malloc(stack->size_of_elements * sizeof(int));
 	is_non_number(argv, stack);
 	stack->i = 0;
 	while (stack->i < stack->size_of_elements)
@@ -60,7 +60,7 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 		exit(1);
 	}
 	if (stack->size_of_elements > 1)
-		stack->stack_b = (int*) malloc(stack->size_of_elements * sizeof(int));
+		stack->stack_b = (int *) malloc(stack->size_of_elements * sizeof(int));
 }
 
 void	handiling_erros(t_stacks *stack)
@@ -105,6 +105,6 @@ void	free_stack(t_stacks *stack)
 	stack->stack_a = NULL;
 	free(stack->stack_b);
 	stack->stack_b = NULL;
-	write(STDERR_FILENO,"Error\n", 6);
+	write(STDERR_FILENO, "Error\n", 6);
 	exit(-1);
 }

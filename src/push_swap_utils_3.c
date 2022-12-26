@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 23:11:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/26 01:15:11 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/26 02:49:41 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	find_lowest_nbr(t_stacks *stack)
 
 void	init_find_x_lowest_nbr_util(t_stacks *stack, t_low *low)
 {
-	low->nbr_count = (int*)malloc(stack->nbr_lowest_by_size * sizeof(int));
-	low->posit_count = (int*)malloc(stack->nbr_lowest_by_size * sizeof(int));
+	low->nbr_count = (int *)malloc(stack->nbr_lowest_by_size * sizeof(int));
+	low->posit_count = (int *)malloc(stack->nbr_lowest_by_size * sizeof(int));
 	find_lowest_nbr(stack);
 	find_biggest_nbr(stack);
 	low->nbr_count[0] = stack->nbr_lowest;
@@ -57,7 +57,8 @@ void	find_x_lowest_nbr_util(t_stacks *stack, t_low *low)
 			low->j = 0;
 			while (low->j < stack->nbr_lowest_by_size)
 			{
-				if (stack->stack_a[low->i] > low->nbr_count[low->k - 1] && stack->stack_a[low->i] < stack->nbr_lowest)
+				if (stack->stack_a[low->i] > low->nbr_count[low->k - 1]
+					&& stack->stack_a[low->i] < stack->nbr_lowest)
 				{
 					stack->nbr_lowest = stack->stack_a[low->i];
 					stack->posit_lowest = low->i;
@@ -76,13 +77,16 @@ void	find_x_posit_nbr(t_stacks *stack, t_low *low)
 {
 	low->k = 0;
 	low->j = 0;
-	if ((stack->size_stack_a - low->posit_count[low->k]) < low->posit_count[low->k])
+	if ((stack->size_stack_a - low->posit_count[low->k])
+		< low->posit_count[low->k])
 		low->i = stack->size_stack_a - low->posit_count[low->k];
 	else
 		low->i = low->posit_count[low->k];
 	while (low->k < stack->nbr_lowest_by_size)
 	{
-		if ((stack->size_stack_a - low->posit_count[low->k]) < low->posit_count[low->k] && (stack->size_stack_a - low->posit_count[low->k]) < low->i)
+		if ((stack->size_stack_a - low->posit_count[low->k])
+			< low->posit_count[low->k]
+			&& (stack->size_stack_a - low->posit_count[low->k]) < low->i)
 		{
 			low->i = stack->size_stack_a - low->posit_count[low->k];
 			low->j = low->k;
@@ -109,7 +113,7 @@ void	find_x_lowest_nbr(t_stacks *stack)
 		stack->nbr_lowest = low.nbr_count[low.j];
 		stack->posit_lowest = low.posit_count[low.j];
 	}
-	else 
+	else
 		find_lowest_nbr(stack);
 	free(low.nbr_count);
 	low.nbr_count = NULL;

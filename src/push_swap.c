@@ -6,31 +6,31 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:49:41 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/26 02:24:40 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/26 02:55:35 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void    print_stacks(t_stacks *stack)
-{
-	int	i;
+// void	print_stacks(t_stacks *stack)
+// {
+// 	int	i;
 
-	i = 0;
-    while (i < stack->size_stack_a)
-    {
-		printf("stack A position %d = %d\n", i, stack->stack_a[i]);
-		i++;
-    }
-	puts("");
-    i = 0;
-    while (i < stack->size_stack_b && stack->size_stack_b != 0)
-    {
-        printf("stack B position %d = %d\n", i, stack->stack_b[i]);
-	    i++; 
-    }
-	puts("");
-}
+// 	i = 0;
+// 	while (i < stack->size_stack_a)
+// 	{
+// 		printf("stack A position %d = %d\n", i, stack->stack_a[i]);
+// 		i++;
+// 	}
+// 	puts("");
+// 	i = 0;
+// 	while (i < stack->size_stack_b && stack->size_stack_b != 0)
+// 	{
+// 		printf("stack B position %d = %d\n", i, stack->stack_b[i]);
+// 		i++;
+// 	}
+// 	puts("");
+// }
 
 void	is_sorted(t_stacks *stack)
 {
@@ -53,13 +53,14 @@ void	is_sorted(t_stacks *stack)
 	}
 }
 
-void    push_swap(t_stacks *stack)
+void	push_swap(t_stacks *stack)
 {
 	is_sorted(stack);
 	if (stack->is_sorted == 1 && stack->size_of_elements == 3)
 		sort_three_numbers_a(stack);
 	is_sorted(stack);
-	if (stack->size_of_elements > 3 && stack->size_of_elements <= 9 && stack->is_sorted == 1)
+	if (stack->size_of_elements > 3 && stack->size_of_elements
+		<= 9 && stack->is_sorted == 1)
 		sort_five_numbers(stack);
 	is_sorted(stack);
 	if (stack->is_sorted == 1)
@@ -76,9 +77,9 @@ void    push_swap(t_stacks *stack)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_stacks    stack;
+	t_stacks	stack;
 
 	if (argc <= 1)
 		return (0);

@@ -6,12 +6,13 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:46:01 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/26 00:39:33 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/26 02:53:27 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -22,11 +23,11 @@ typedef struct s_stacks
 	int			i;
 	int			*stack_a;
 	int			*stack_b;
-    int	    	size_stack_a;
-    int	    	size_stack_b;
-    int			size_of_elements;
-    int	    	tmp;
-    int	    	flag;
+	int			size_stack_a;
+	int			size_stack_b;
+	int			size_of_elements;
+	int			tmp;
+	int			flag;
 	int			count_moves;
 	int			is_sorted;
 	int			stack_a_is_sorted;
@@ -38,7 +39,7 @@ typedef struct s_stacks
 	int			posit_biggest;
 	int			nbr_a_not_sorted;
 	int			posit_a_not_sorted;
-}              t_stacks;
+}				t_stacks;
 
 typedef struct s_low
 {
@@ -49,15 +50,13 @@ typedef struct s_low
 	int		*posit_count;
 }				t_low;
 
-
 // libft functions
 int		ft_atoi(const char *nptr, t_stacks *stack);
 int		ft_isdigit(int c);
 
-
 // push_swap functions
 void	init_stacks(t_stacks *stack, int argc, char **argv);
-void    print_stacks(t_stacks *stack);
+void	print_stacks(t_stacks *stack);
 void	is_duplicated(t_stacks *stack);
 void	is_non_number(char **argv, t_stacks *stack);
 void	handiling_erros(t_stacks *stack);
@@ -88,6 +87,6 @@ void	rotate_b(t_stacks *stack);
 void	rotate_a_and_b(t_stacks *stack);
 void	reverse_rotate_a(t_stacks *stack);
 void	reverse_rotate_b(t_stacks *stack);
-void    reverse_rotate_a_and_b(t_stacks *stack);
+void	reverse_rotate_a_and_b(t_stacks *stack);
 
 #endif

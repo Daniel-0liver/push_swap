@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:22 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/25 23:12:38 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/26 02:50:18 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	is_non_number(char **argv, t_stacks *stack)
 		j = 0;
 		while ((ft_isdigit(argv[stack->i][j])) == 1 && argv[stack->i][j])
 			j++;
-		if ((argv[stack->i][j] == '-' || argv[stack->i][j] == '+') && (ft_isdigit(argv[stack->i][j + 1])))
+		if ((argv[stack->i][j] == '-' || argv[stack->i][j] == '+')
+			&& (ft_isdigit(argv[stack->i][j + 1])))
 		{
 			j++;
 			while ((ft_isdigit(argv[stack->i][j]) == 1))
@@ -40,7 +41,7 @@ void	is_non_number(char **argv, t_stacks *stack)
 		{
 			free(stack->stack_a);
 			stack->stack_a = NULL;
-			write(STDERR_FILENO,"Error\n", 6);
+			write(STDERR_FILENO, "Error\n", 6);
 			exit(-1);
 		}
 		stack->i++;

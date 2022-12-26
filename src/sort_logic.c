@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 23:52:42 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/25 23:39:23 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/26 12:57:31 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	sort_logic_put_b(t_stacks *stack)
 				reverse_rotate_a(stack);
 		if (stack->size_stack_a > 1 && stack->stack_a[0] > stack->stack_a[1])
 			swap_a(stack);
-		else if (stack->size_stack_a > 1 && stack->stack_a[0] > stack->stack_a[stack->size_stack_a - 1])
+		else if (stack->size_stack_a > 1 && stack->stack_a[0]
+			> stack->stack_a[stack->size_stack_a - 1])
 			reverse_rotate_a(stack);
 		push_b(stack);
 		if (stack->size_stack_b > 1 && stack->stack_b[0] < stack->stack_b[1])
