@@ -6,13 +6,13 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 23:45:56 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/25 23:04:17 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/26 02:20:19 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-long	ft_atoi(const char *nptr, t_stacks *stack)
+int	ft_atoi(const char *nptr, t_stacks *stack)
 {
 	int		i;
 	long	result;
@@ -30,7 +30,12 @@ long	ft_atoi(const char *nptr, t_stacks *stack)
 	while (nptr[i] && (nptr[i] >= '0' && nptr[i] <= '9'))
 		result = result * 10 + (nptr[i++] - '0');
 	if ((result * sig) > 2147483647 || (result * sig) < -2147483648)
-		free_stack(stack);
+	{
+		free(stack->stack_a);
+		stack->stack_a = NULL;
+		write(STDERR_FILENO,"Error\n", 6);
+		exit(-1);
+	}
 	return (result * sig);
 }
 
@@ -41,7 +46,7 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 	stack->size_of_elements = (argc -1);
 	stack->size_stack_a = stack->size_of_elements;
 	stack->size_stack_b = 0;
-	stack->stack_a = (int*) malloc(stack->size_of_elements * sizeof(int));
+	stack->stack_a = (int*)malloc(stack->size_of_elements * sizeof(int));
 	is_non_number(argv, stack);
 	stack->i = 0;
 	while (stack->i < stack->size_of_elements)
@@ -51,7 +56,6 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 	}
 	if (stack->size_of_elements == 1)
 	{
-		write(STDOUT_FILENO, "\n", 1);
 		free(stack->stack_a);
 		exit(1);
 	}
@@ -61,19 +65,17 @@ void    init_stacks(t_stacks *stack, int argc, char **argv)
 
 void	handiling_erros(t_stacks *stack)
 {
+	is_duplicated(stack);
 	if (stack->size_of_elements == 2)
 	{
 		if (stack->stack_a[0] > stack->stack_a[1])
 			swap_a(stack);
-		else
-			write(STDOUT_FILENO, "\n", 1);
 		free(stack->stack_a);
 		stack->stack_a = NULL;
 		free(stack->stack_b);
 		stack->stack_b = NULL;
 		exit(1);
 	}
-	is_duplicated(stack);
 	if (stack->flag == 1)
 		free_stack(stack);
 }

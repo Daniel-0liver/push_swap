@@ -6,7 +6,7 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 23:46:01 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/25 23:18:42 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/26 00:39:33 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,18 @@ typedef struct s_stacks
 	int			posit_a_not_sorted;
 }              t_stacks;
 
+typedef struct s_low
+{
+	int		i;
+	int		j;
+	int		k;
+	int		*nbr_count;
+	int		*posit_count;
+}				t_low;
+
+
 // libft functions
-long	ft_atoi(const char *nptr, t_stacks *stack);
+int		ft_atoi(const char *nptr, t_stacks *stack);
 int		ft_isdigit(int c);
 
 
@@ -64,7 +74,7 @@ void	sort_five_numbers(t_stacks *stack);
 void	find_biggest_nbr(t_stacks *stack);
 void	find_biggest_nbr_b(t_stacks *stack);
 void	find_lowest_nbr(t_stacks *stack);
-void	find_second_lowest_nbr(t_stacks *stack);
+void	find_x_lowest_nbr(t_stacks *stack);
 void	free_stack(t_stacks *stack);
 
 // commands

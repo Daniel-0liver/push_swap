@@ -6,17 +6,17 @@
 /*   By: dateixei <dateixei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 23:52:42 by dateixei          #+#    #+#             */
-/*   Updated: 2022/12/25 22:51:45 by dateixei         ###   ########.fr       */
+/*   Updated: 2022/12/25 23:39:23 by dateixei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	sort_logic(t_stacks *stack)
+void	sort_logic_put_b(t_stacks *stack)
 {
 	while (stack->size_stack_a > 0)
 	{
-		find_second_lowest_nbr(stack);
+		find_x_lowest_nbr(stack);
 		if ((stack->size_stack_a - stack->posit_lowest) > stack->posit_lowest)
 			while (stack->stack_a[0] != stack->nbr_lowest)
 				rotate_a(stack);
@@ -36,6 +36,11 @@ void	sort_logic(t_stacks *stack)
 				swap_b(stack);
 		}
 	}
+}
+
+void	sort_logic(t_stacks *stack)
+{
+	sort_logic_put_b(stack);
 	stack_a_is_sorted(stack);
 	if (stack->stack_b[0] < stack->stack_b[1])
 		swap_b(stack);
