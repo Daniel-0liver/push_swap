@@ -22,7 +22,7 @@ The last element becomes the first one.<br/>
 <strong>rrr</strong> : rra and rrb at the same time.<br/><br/>
 You can find further information on this file:<br/>
 
-![Push_swap pdf](https://github.com/Daniel-0liver/push_swap/blob/main/push_swap.pdf)
+[Push_swap pdf](https://github.com/Daniel-0liver/push_swap/blob/main/push_swap.pdf)
 
 <h2>How to use</h2>
 
