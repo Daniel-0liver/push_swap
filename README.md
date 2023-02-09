@@ -42,5 +42,5 @@ And then the script.
 ```
 pswapviz.py -p ../push_swap/push_swap -s 100 -g2
 ```
-Where you can change the 100 for the amount of numbers that you want to test.
+Where the 100 can be changed depending on how many numbers you wish to test.
 ## All the credits for the visualizer go to [o-reo push_swap visualizer](https://github.com/o-reo/push_swap_visualizer) and [10257 push_swap_viz_kivy](https://github.com/10257/push_swap_viz_kivy)
